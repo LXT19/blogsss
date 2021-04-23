@@ -1,0 +1,160 @@
+.body{
+    background: darkcyan;
+}
+.m-padded-min{
+    padding: 0.2em;!important;
+}
+.m-padded{
+    padding: 3em;!important;
+}
+.m-padded-tb-mini{
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+}
+.m-padded-tb-massive{
+    padding-top: 5em !important;
+    padding-bottom: 5em !important;
+}
+.m-padded-tb-hug{
+    padding-top: 4em !important;
+    padding-bottom: 4em !important;
+}
+.m-padded-tb-big{
+    padding-top: 3em !important;
+    padding-bottom: 3em !important;
+}
+.m-padded-tb-lager{
+    padding-top: 2em !important;
+    padding-bottom: 2em !important;
+}
+.m-padded-tb{
+    padding-top: 1em !important;
+    padding-bottom: 1em !important;
+}
+/**布局**/
+.m-fixed{
+    position: fixed;!important;
+    z-index: 10;!important;
+}
+.m-right-bottom{
+    bottom: 0;!important;
+    right: 0;!important;
+}
+
+/*---------------------*/
+.m-text{
+    font-weight: 300;!important;
+    letter-spacing: 1px; !important;
+    line-height: 1.8;
+}
+.m-text-thin{
+    font-weight: 300 !important;
+}
+.m-text-spaced{
+    letter-spacing: 1px; !important;
+}
+.m-text-lined{
+    line-height: 1.8;
+}
+
+/**-----dispaly-----**/
+.m-inline-block{
+    display: inline-block; !important;
+}
+.m-image-size{
+    width: 500px; !important;
+}
+.m-container{
+    max-width: 120em; !important;
+    margin: auto; !important;
+}
+.m-container-small{
+    max-width: 75em; !important;
+    margin: auto; !important;
+}
+.m-margin-tb-tiny{
+    margin-top: 0.3em; !important;
+    margin-left: 0.3em; !important;
+}
+.m-margin-tb-lager{
+    margin-top: 1em; !important;
+    margin-left: 1em; !important;
+}
+.m-black{
+    color: #333; !important;
+    margin: auto;
+}
+.m-margin-top-small{
+    margin-top: 0.5em;!important;
+}
+.m-margin-top{
+    margin-top: 1em;!important;
+}
+.m-margin-top-lager{
+    margin-top: 2em;!important;
+}
+.m-top-right{
+    position: absolute;
+    top:3em;
+    left:2em;
+}
+.m-margin-tb-left{
+    margin-left: 1em;!important;
+}
+.m-float-right{
+    float: right;
+}
+.m-margin-right{
+    margin-right: 3em;!important;
+}
+.m-font-size{
+    font-size: 1.5em;!important;
+    font-family: 华文行楷;
+}
+.m-font-size-small{
+    font-size: 1.3em;!important;
+    font-family: 华文楷体;
+}
+.m-container-color{
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+.m-image-size{
+    width: 50%;
+
+}
+.m-padded-lr{
+    padding-left: 2em; !important;
+    padding-right: 2em; !important;
+}
+
+.m-shadow-small{
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); !important;
+}
+.m-image-radius{
+    width: 20%;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: auto;
+
+}
+.background-color {
+    background: rgba(255, 255, 255, 0.6);!important;
+}
+.m-th{
+    width: 12%;
+}
+.m-th-small{
+    width: 8%;
+}
+.m-th-big{
+    width: 16%
+}
+.m-padded-left{
+    padding-left: 2em;
+
+}
+
+
+
+

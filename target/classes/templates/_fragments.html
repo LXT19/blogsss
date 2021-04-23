@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="../static/css/me.css" th:href="@{/css/me.css}">
+    <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="../static/lib/prisim/prism.css" th:href="@{/lib/prisim/prism.css}">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+    <title th:replace="${title}">博客</title>
+</head>
+<body>
+<!--导航-->
+
+<nav th:fragment="menu(n)" class="ui inverted attached white  segment m-padded-tb-lager">
+    <div class="ui container">
+        <div class="ui inverted  secondary menu">
+
+            <h2 class="ui teal header item">blog</h2>
+
+            <a href="#" th:href="@{/}" class="item active m-font-size " th:classappend="${n==1} ? 'active'"><i class="home icon "></i>首页</a>
+            <a href="blog.html" th:href="@{/type/-1}" class="item m-font-size" th:classappend="${n==2} ? 'active'"><i class="idea icon"></i>分类</a>
+           <!-- <a href="#" class="item m-font-size" th:classappend="${n==3} ? 'active'"><i class="tags icon"></i> 标签</a>-->
+            <a href="#" th:href="@{/archive}" class="item m-font-size" th:classappend="${n==4} ? 'active'"><i class="clone icon"></i> 归档</a>
+            <a href="#" th:href="@{/archive}" class="item m-font-size" th:classappend="${n==4} ? 'active'"><i class="image icon"></i> 照片墙</a>
+            <a href="#" th:href="@{/about}" class="item m-font-size" th:classappend="${n==5} ? 'active'"><i class="info icon"></i> 关于我</a>
+            <div class="right item">
+                <form name="search" action="#" method="post" th:action="@{/search}" target="_blank">
+                    <div class="ui icon inverted  input">
+                        <input type="text" name="title" placeholder="Search....">
+                        <i onclick="document.forms['search'].submit()" class="search link icon"></i>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui black icon button m-top-right">
+        <i class="sidebar icon"></i>
+    </a>
+
+</nav>
+
+<!--底部-->
+<footer th:fragment="footer" class="ui inverted vertical stackable segment m-padded-tb-massive">
+    <div class="ui  center aligned container">
+        <div class="ui inverted divided grid">
+            <div class="three wide column" >
+                <img src="../static/images/wechat.png" th:src="@{images/wechat.png}" class="ui rounded image" style="width: 110px">
+            </div>
+            <div class="four wide column" >
+                <h4 class="ui inverted header m-text-thin">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">用户故事{User story}</a>
+                    <a href="#" class="item">用户故事{User story}</a>
+                    <a href="#" class="item">用户故事{User story}</a>
+                </div>
+            </div>
+            <div class="four wide column" >
+                <h4 class="ui inverted header">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Email：123456</a>
+                    <a href="#" class="item">QQ: 123456</a>
+                    <a href="#" class="item">微信: 123456</a>
+                </div>
+            </div>
+            <div class="five wide column" >
+                <h4 class="ui inverted header">Blog</h4>
+                <p>This is my bolg</p>
+            </div>
+        </div>
+       <!-- <div class="ui inverted section divider">
+
+        </div>
+        <p >Copyright@2021-2022 design by linxutao</p>
+        <br>-->
+    </div>
+
+</footer>
+
+
+<th:block  th:fragment="script">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+    <script src="../static/lib/prisim/prism.js" th:src="@{/lib/prisim/prism.js}"></script>
+    <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+    <script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+</th:block>
+
+</body>
+</html>

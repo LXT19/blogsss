@@ -1,0 +1,24 @@
+2021-04-20 22:41:03.957  INFO 3096 --- [main] com.blog.BlogApplicationTests            : Starting BlogApplicationTests on DESKTOP-VVI2P2N with PID 3096 (started by lin in E:\code\blog)
+2021-04-20 22:41:04.033 DEBUG 3096 --- [main] com.blog.BlogApplicationTests            : Running with Spring Boot v2.3.7.RELEASE, Spring v5.2.12.RELEASE
+2021-04-20 22:41:04.034  INFO 3096 --- [main] com.blog.BlogApplicationTests            : The following profiles are active: dev
+2021-04-20 22:41:07.092  INFO 3096 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-20 22:41:07.209  INFO 3096 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-04-20 22:41:07.345  WARN 3096 --- [main] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-04-20 22:41:07.590  INFO 3096 --- [main] com.blog.BlogApplicationTests            : Started BlogApplicationTests in 4.23 seconds (JVM running for 6.228)
+2021-04-20 22:41:08.029  INFO 3096 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-04-20 22:41:38.906  INFO 16732 --- [main] com.blog.BlogApplicationTests            : Starting BlogApplicationTests on DESKTOP-VVI2P2N with PID 16732 (started by lin in E:\code\blog)
+2021-04-20 22:41:38.907 DEBUG 16732 --- [main] com.blog.BlogApplicationTests            : Running with Spring Boot v2.3.7.RELEASE, Spring v5.2.12.RELEASE
+2021-04-20 22:41:38.907  INFO 16732 --- [main] com.blog.BlogApplicationTests            : The following profiles are active: dev
+2021-04-20 22:41:41.049  INFO 16732 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-20 22:41:41.161  INFO 16732 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-04-20 22:41:41.272  WARN 16732 --- [main] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-04-20 22:41:41.487  INFO 16732 --- [main] com.blog.BlogApplicationTests            : Started BlogApplicationTests in 2.955 seconds (JVM running for 3.934)
+2021-04-20 22:41:41.643  INFO 16732 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-04-20 22:43:19.357  INFO 10584 --- [main] com.blog.BlogApplicationTests            : Starting BlogApplicationTests on DESKTOP-VVI2P2N with PID 10584 (started by lin in E:\code\blog)
+2021-04-20 22:43:19.358 DEBUG 10584 --- [main] com.blog.BlogApplicationTests            : Running with Spring Boot v2.3.7.RELEASE, Spring v5.2.12.RELEASE
+2021-04-20 22:43:19.358  INFO 10584 --- [main] com.blog.BlogApplicationTests            : The following profiles are active: dev
+2021-04-20 22:43:21.373  INFO 10584 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-20 22:43:21.483  INFO 10584 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2021-04-20 22:43:21.593  WARN 10584 --- [main] org.thymeleaf.templatemode.TemplateMode  : [THYMELEAF][main] Template Mode 'HTML5' is deprecated. Using Template Mode 'HTML' instead.
+2021-04-20 22:43:21.827  INFO 10584 --- [main] com.blog.BlogApplicationTests            : Started BlogApplicationTests in 2.845 seconds (JVM running for 3.745)
+2021-04-20 22:43:21.986  INFO 10584 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'

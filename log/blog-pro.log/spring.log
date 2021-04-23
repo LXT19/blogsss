@@ -1,0 +1,4 @@
+2021-04-05 12:17:21.418  INFO 11764 --- [restartedMain] com.blog.BlogApplication                 : Starting BlogApplication on DESKTOP-VVI2P2N with PID 11764 (E:\code\blog\target\classes started by lin in E:\code\blog)
+2021-04-05 12:17:21.420  INFO 11764 --- [restartedMain] com.blog.BlogApplication                 : The following profiles are active: pro
+2021-04-05 12:17:21.926  WARN 11764 --- [restartedMain] o.m.s.mapper.ClassPathMapperScanner      : No MyBatis mapper was found in '[com.blog]' package. Please check your configuration.
+2021-04-05 12:17:22.631  INFO 11764 --- [restartedMain] com.blog.BlogApplication                 : Started BlogApplication in 1.571 seconds (JVM running for 2.532)

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mapper.TypeMapper">
+    <!--查询type与blog的集合-->
+    <resultMap id="type_blog" type="com.blog.bean.Type">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <collection property="blogs" ofType="java.util.List">
+            <id property="id" column="id"/>
+            <result property="title" column="title"/>
+            <result property="typeId" column="type_id"/>
+        </collection>
+    </resultMap>
+
+    <!--查询type,以id-->
+    <select id="getTypeById" resultType="com.blog.bean.Type">
+        select * from t_type where id=#{id}
+    </select>
+
+    <!--查询type，以name-->
+    <select id="getTypeByName" resultType="com.blog.bean.Type">
+        select * from t_type where name = #{name}
+    </select>
+
+    <!--查询所有type-->
+    <select id="getAdminType" resultType="com.blog.bean.Type">
+        select * from t_type
+    </select>
+
+    <!--查询所有type与blog的集合-->
+    <select id="getAllType" resultMap="type_blog">
+        select t.id,t.name,b.id,b.name,b.title,b.type_id from t_blog b,t_type t where t.id=b.type_id
+    </select>
+
+    <!--保存type-->
+    <insert id="saveType" parameterType="com.blog.bean.Type">
+        insert into t_type(name) values (#{name});
+    </insert>
+
+    <!--删除type-->
+    <delete id="deleteType" parameterType="java.lang.Long">
+        delete from t_type where id= #{id}
+    </delete>
+
+    <!--更新type-->
+    <update id="updateType" parameterType="java.lang.Integer">
+        update t_type set name =#{name} where id = #{id}
+    </update>
+
+</mapper>

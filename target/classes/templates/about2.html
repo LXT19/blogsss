@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/typo.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+    <link rel="stylesheet" href="../static/css/animate.css">
+    <link rel="stylesheet" href="../static/lib/prisim/prism.css">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css">
+    <title>关于我</title>
+</head>
+<body style="background-image: url('https://picsum.photos/id/1011/1920/2200');background-repeat:no-repeat ;background-attachment: fixed;" >
+    <!--导航-->
+
+    <div class="background-color">
+        <nav th:replace="_fragments :: menu(1)"></nav>
+    </div>
+    <!--中间内容-->
+    <div class="m-container m-margin-top-lager  ">
+        <div class="ui container">
+            <div class="ui grid">
+                <div class="eleven wide column ">
+                    <div class="ui  segment ">
+                        <img src="../static/images/background.png" alt="" class="ui rounded image">
+                    </div>
+                </div>
+                <div class="five wide column">
+                    <div class="ui top attached segment">
+                        <div class="ui header">关于我</div>
+                    </div>
+                    <div class="ui attached segment">
+                        <p class="m-font-size-small ">林旭涛，阿巴阿巴阿巴阿巴
+                            阿巴阿巴阿巴阿巴
+                        </p>
+                        <p class="m-font-size-small ">林旭涛，阿巴阿巴阿巴阿巴
+                            阿巴阿巴阿巴阿巴
+                        </p>
+                    </div>
+                    <div class="ui attached segment">
+                        <div class="ui blue basic left pointing label">编程</div>
+                        <div class="ui blue basic left pointing label">编程</div>
+                        <div class="ui blue basic left pointing label">编程</div>
+                    </div>
+                    <div class="ui bottom attached segment ">
+                        <div class="ui green basic left pointing label">java</div>
+                        <div class="ui green basic left pointing label">C</div>
+                        <div class="ui green basic left pointing label">MySQL</div>
+                    </div>
+                    <div class="ui bottom attached segment">
+                        <a href="#" class="ui circle icon  button">
+                            <i class="github icon"></i>
+                        </a>
+                        <a href="#" class="ui wechat circle icon  button">
+                            <i class="weixin icon"></i>
+                        </a>
+                        <a href="#" class="ui qq circle icon  button"  >
+                            <i class="qq icon"></i>
+                        </a>
+                    </div>
+                    <div class="ui wechat-qr flowing popup transition hidden ">
+                        <img src="../static/images/money.png" class="ui rounded image" alt="" style="width:100px">
+                    </div>
+                    <div class="ui qq-qr flowing popup transition hidden ">
+                        <img src="../static/images/qq.png" class="ui rounded image" alt="" style="width:100px">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <br>
+    <br>
+
+    <!--底部-->
+    <footer th:replace="_fragments :: footer"></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script>
+    $('.qq').popup({
+        popup : $('.qq-qr'),
+        on: 'hover',
+        position: 'bottom center'
+    })
+    $('.wechat').popup({
+        popup : $('.wechat-qr'),
+        on: 'hover',
+        position: 'bottom center'
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url:  jdbc:mysql://localhost:3306/blog?useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8
+    username: root
+    password: 199961
+  resources:
+    static-locations: classpath:static/
+
+    #redis
+  redis:
+    port: 6379
+    host: 192.168.154.157
+
+
+
+
+logging:
+  level:
+    root: info
+    com.blog: debug
+  file:
+    path: log/blog.log
+
+
+#mybatis配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+#全局配置文件直接在这里声明
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+#分页插件查询
+pagehelper:
+  auto-dialect: mysql
+  support-methods-arguments: true
+  reasonable: true
+  offset-as-page-num: true
+  row-bounds-with-count: true
+
+
+
+
+
+
+

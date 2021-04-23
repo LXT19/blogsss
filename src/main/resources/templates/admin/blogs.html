@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css" th:href="@{/css/me.css}">
+
+    <title>后台管理</title>
+</head>
+<body style="background-image: url('https://picsum.photos/id/1011/1920/2200');background-repeat:no-repeat ;background-attachment: fixed;">
+<!--导航-->
+
+<nav class="ui   attached  inverted   segment m-padded-tb-lager ">
+    <div class="ui  container">
+        <div class="ui inverted  secondary menu">
+            <h2 class="ui solar-green header item">后台管理</h2>
+            <a href="#" class="item active m-font-size "><i class="home icon "></i>博客</a>
+            <a href="#" th:href="@{/admin/type}" class="item  m-font-size"><i class="idea icon"></i>分类</a>
+            <a href="#" th:href="@{/admin/tag}" class="item m-font-size"><i class="tags icon"></i> 标签</a>
+            <div class="right menu">
+                <div class="ui dropdown item">
+                    <div class="text ">
+                        <img src="../../static/images/background.png" th:src="@{${session.user.getAvatar()}}" alt="" class="ui avatar image" style="width: 30px">
+                        <span th:text="${session.user.username}"></span>
+                    </div>
+                    <i class="ui center aligned dropdown   icon"></i>
+                    <div class="menu">
+                        <a  href="#" th:href="@{/admin/logout}" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui black icon button m-top-right">
+        <i class="sidebar icon"></i>
+    </a>
+
+</nav>
+<div class="ui  attached  pointing  menu segment">
+    <div class="ui  container">
+        <div class="ui  menu">
+            <a href="#" class=" active  item"><i class="list blue icon"></i>博客列表</a>
+            <a href="#"  th:href="@{/admin/blogs/input}" class="item blue"><i class="plus icon"></i></i>博客发布</a>
+        </div>
+    </div>
+
+</div>
+
+<!--中间内容-->
+<div class=" m-margin-top-lager">
+    <div class="ui  container">
+        <div class="ui success message" th:unless="${#strings.isEmpty(message)}">
+
+            <i class="close icon"></i>
+
+            <div class="header">提示：</div>
+            <br/>
+
+            <p th:text="${message}">恭喜，操作成功</p>
+
+        </div>
+        <form th:action="@{/admin/blogs/search}" method="post" class="ui segment form background-color">
+            <input type="hidden" name="page">
+            <div class="inline field">
+                <input type="text" name="title" placeholder="标题">
+                <div class="ui selection dropdown">
+                    <input type="hidden" name="typeId">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">分类</div>
+                    <div class="menu">
+                        <div th:each="type:${types} " class="item" data-value="1" th:data-value="${type.id}" th:text="${type.name}">错误日志</div>
+                    </div>
+                </div>
+                <div class="ui checkbox m-margin-tb-left">
+                    <input type="checkbox" name="recommend" id="recommend">
+                    <label for="recommend">推荐</label>
+                </div>
+
+                <div class="m-float-right">
+                    <button type="submit" id="search-btn" class="ui blue basic button">
+                        <i class="search icon"></i>博客搜索
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div id="table-container">
+            <table th:fragment="blogList" class="ui  table ">
+                <thead>
+                <tr >
+                    <th class="m-th-small"></th>
+                    <th class="m-th">标题</th>
+                    <th class="m-th">类型</th>
+                    <th class="m-th" >推荐</th>
+                    <th class="m-th">状态</th>
+                    <th class="m-th">更新时间</th>
+                    <th class="ui center aligned m-th-big" >操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="blog,iterStat:${pageInfo.list}">
+                    <td th:text="${iterStat.count}">1</td>
+                    <td th:text="${blog.title}">练习</td>
+                    <td th:text="${blog.getType().name}">认知升级</td>
+                    <td th:text="${blog.getRecommend()}==1 ? '是':'否'" >是</td>
+                    <td th:text="${blog.getPublished()}==1 ? '发布': '草稿'">发布</td>
+                    <td th:text="${#dates.format(blog.getUpdateTime(),'yyyy-MM-dd')}" >2021-4-2</td>
+                    <td class="ui center aligned " >
+                        <a th:href="@{/admin/blogs/{id}/edit(id=${blog.id})}" class="ui basic blue button"><i class="edit icon"></i>编辑</a>
+                        <a th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}" onclick="return confirm('您确定要删除吗？')" class="ui basic red button "><i class="list alternate icon"></i>删除</a>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th colspan="6">
+                        <div class="ui pagination menu" >
+                            <a th:href="@{/admin/blogs}" class="item">首页</a>
+                            <a th:href="@{/admin/blogs(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" class="item"><i class="chevron left icon"></i>上一页</a>
+                            <a th:href="@{/admin/blogs(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage})}"  class="item">下一页<i class="chevron right icon"></i></a>
+                            <a th:href="@{/admin/blogs(pageNum=${pageInfo.pages})}" class="item">尾页</a>
+                        </div>
+                    </th>
+                    <th colspan="2" class="center aligned ">
+                        <a href="#" th:href="@{/admin/blogs/input}" class="ui  basic blue button  "><i class="pencil alternate icon"></i>博客新增</a>
+                    </th>
+                </tr>
+                </tfoot>
+            </table>
+
+
+
+        </div>
+
+    </div>
+</div>
+<br>
+<br>
+
+<!--底部-->
+<footer class="ui inverted vertical stackable segment m-padded-tb-massive">
+    <div class="ui  center aligned container">
+        <div class="ui inverted divided grid">
+            <div class="three wide column">
+                <img src="../../static/images/wechat.png" th:src="@{/images/wechat.png}" alt="" class="ui rounded image" style="width: 110px">
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header m-text-thin">最新博客</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">用户故事{User story}</a>
+                    <a href="#" class="item">用户故事{User story}</a>
+                    <a href="#" class="item">用户故事{User story}</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui inverted header">联系我</h4>
+                <div class="ui inverted link list">
+                    <a href="#" class="item">Email：123456</a>
+                    <a href="#" class="item">QQ: 123456</a>
+                    <a href="#" class="item">微信: 123456</a>
+                </div>
+            </div>
+            <div class="five wide column">
+                <h4 class="ui inverted header">Blog</h4>
+                <p>This is my bolg</p>
+            </div>
+        </div>
+        <div class="ui inverted section divider">
+
+        </div>
+        <p>Copyright@2021-2022 design by linxutao</p>
+        <br>
+    </div>
+
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script>
+
+    $('.ui.dropdown').dropdown({
+
+    })
+
+    function page(obj) {
+        $("[name='page']").val($obj).data("page");
+        loaddata();
+
+
+    }
+
+    $('.message .close')
+        .on('click',function () {
+            $(this)
+                .closest('.message')
+                .transition('fade');
+        });
+
+    function loaddata() {
+        $("#table-container").load(/*[@{/admin/blogs/search}}]*/"/admin/blogs/search",{
+            title : $("[name='title']").val(),
+            type : $("[name='typeId']").val(),
+            recommend :$("[name='recommend']").prop("checked"),
+            page : $("[name='page']").val()
+        });
+
+    }
+
+</script>
+</body>
+</html>

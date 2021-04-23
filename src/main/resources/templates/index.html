@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css" >
+
+    <title>主页</title>
+</head>
+<body style="background-image: url('https://picsum.photos/id/1011/1920/2200');background-repeat:no-repeat ;background-attachment: fixed;" >
+    <!--导航-->
+
+    <nav th:replace="_fragments :: menu(1)"></nav>
+
+    <!--中间内容-->
+    <div class=" m-container m-padded-tb-tb" >
+        <br>
+        <br>
+        <div class="ui container  ">
+                <div class="ui  grid ">
+                    <!--左边博客列表-->
+                        <div class="eleven wide column ">
+                            <div class="background-color">
+                                <!--头部内容-->
+                                <div class="ui basic  segment ">
+                                    <div class="ui middle aligned two column grid">
+                                        <div class="column">
+                                            <h3 class="ui teal header">博客</h3>
+                                        </div>
+                                        <div class=" right aligned column ">
+                                            <h3 class="ui teal header m-inline-block" th:text="'共'+${pageInfo.total}+'篇'">共7篇</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--中间内容-->
+                                <div class="ui attached basic  segment " th:each="blog:${pageInfo.list}">
+                                    <div class="ui padded  vertical segment m-padded-tb-lager " >
+                                        <div class="ui grid ">
+                                            <div class="eleven wide column">
+                                                <h3 class="ui header" ><a  href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" th:text="${blog.title}">JAVA中为什么只有值传递</a></h3>
+                                                <p class="m-text " th:text="${blog.getDescription()}">对于基本数据类型的值传递容易理解
+                                                    就是在调用方法时传入参数，是通过传入该参数的副本给方法，而不是传入参数本身
+                                                    （就是对传入到方法的参数进行复制，而不是传入原本的数据，只是传入一个数据相同的副本）
+                                                    .....
+                                                </p>
+                                                <div class="ui grid">
+                                                    <div class="eleven wide column">
+                                                        <div class="ui horizontal link list">
+                                                            <div class="item">
+                                                                <div class="content">
+                                                                </div>
+                                                                <div class="item">
+                                                                    <img src="https://picsum.photos/id/1005/100/100" th:src="@{${blog.getUser().getAvatar()}}" alt="" class="ui avatar image ">
+                                                                    <a href="#" ></a><span th:text="${blog.getUser().username}+'  &nbsp&nbsp &nbsp&nbsp'" >林旭涛  &nbsp&nbsp &nbsp&nbsp</span>
+                                                                    <i class="calendar icon"></i>  <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')+'&nbsp&nbsp &nbsp&nbsp'}">2021-3-31&nbsp&nbsp</span>
+                                                                    <i class="eye icon"></i> <span th:text="${blog.getViews()}">2356&nbsp</span>
+                                                                </div>
+                                                                <div class="item">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="right aligned four wide column">
+                                                        <a href="#" target="_blank" class="ui basic green label"><span th:text="${blog.getType().name}">认知升级</span></a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="five wide column">
+                                                <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                                    <img src="../static/images/img.png" th:src="@{${blog.firstPicture}}"  alt="" class="ui  rounded image">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--底部-->
+                                <div class="ui bottom basic segment">
+                                    <div class="ui middle aligned two column grid">
+                                        <div class="column">
+                                            <a href="#" th:href="@{/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" class="ui yellow basic button">上一页</a>
+                                        </div>
+                                        <div class=" right aligned column ">
+                                            <a href="#" th:href="@{/(pageNum= ${pageInfo.hasNextPage}?${pageInfo.nextPage})}" class="ui  yellow basic button">下一页</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    <!--右边的top-->
+                    <div class="five wide column">
+                        <!--分类-->
+                        <div class="ui segments">
+                            <div class="ui secondary attached segment">
+                                <div class="ui two column">
+                                    <div class="column">
+                                        <i class="idea icon"></i> 分类
+                                        <a href="#" target="_blank"style="float:right" >more<i class="angle double right icon"></i> </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="ui teal attached segment">
+                                <div class="ui fluid vertical menu"th:each="type : ${types}" >
+                                    <a href="#" th:href="@{/type/{id}(id=${type.id})}" class="item" >
+                                        <span th:text="${type.name}">学习日志</span>
+                                        <div class="ui basic left pointing label" th:text="${type.getBlogs().size()}">13</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--标签-->
+<!--                        <div class="m-margin-top-lager">-->
+<!--                            <div class="ui secondary attached segment">-->
+<!--                                <div class="ui two column">-->
+<!--                                    <div class="column">-->
+<!--                                        <i class="tags icon"></i> 标签-->
+<!--                                        <a href="#" target="_blank"style="float:right" >more<i class="angle double right icon"></i> </a>-->
+<!--                                    </div>-->
+
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div class="ui teal attached segment">-->
+<!--                                <a href="#" target="_blank" class="ui basic left pointing label m-margin-tb-tiny" th:each="tag:${tags}">-->
+<!--                                    <span th:text="${tag.name}">方法</span>-->
+<!--                                    &lt;!&ndash;<div class="detail">23</div>&ndash;&gt;-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <br>
+                        <!--最新推荐-->
+                        <div class="ui segments m-margin-top-lager" >
+                            <div class="ui secondary attached segment">
+                                <i class="bookmark icon"></i> 最新推荐
+                            </div>
+                            <div class="ui segment" th:each="top:${topBlog}">
+                                <a href="#" target="_blank" style="color: #333333"><span th:text="${top.title}">用户故事</span></a>
+                            </div>
+
+                        </div>
+                        <!--二维码-->
+                        <div class="ui horizontal divider header">扫码关注</div>
+                        <div class="ui centered card" style="width: 10em">
+                            <img src="../static/images/wechat.png" th:src="@{images/wechat.png}" class="ui rounded image">
+                        </div>
+
+                    </div>
+                </div>
+        </div>
+       <br>
+        <br>
+        <br>
+    </div>
+
+    <!--底部-->
+
+    <footer th:replace="_fragments :: footer"></footer>
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
+
+<!--/*/</th:block>/*/-->
+
+<!--
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+-->
+</body>
+</html>
