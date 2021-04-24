@@ -139,7 +139,7 @@
                                 <i class="bookmark icon"></i> 最新推荐
                             </div>
                             <div class="ui segment" th:each="top:${topBlog}">
-                                <a href="#" target="_blank" style="color: #333333"><span th:text="${top.title}">用户故事</span></a>
+                                <a href="#" th:href="@{/blog/{id}(id=${top.id})}" target="_blank" style="color: #333333"><span th:text="${top.title}">用户故事</span></a>
                             </div>
 
                         </div>

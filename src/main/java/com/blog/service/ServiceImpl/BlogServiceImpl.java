@@ -21,11 +21,9 @@ import com.blog.util.RedisUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+import sun.awt.image.ImageWatched;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class BlogServiceImpl implements BlogService {
@@ -57,9 +55,21 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog getBlog(Long id) {
 
-        Blog blog= blogMapper.getBlogById(id);
-        blog.setType(typeMapper.getTypeById(blog.getTypeId()));
-        blog.setUser(userMapper.getUser(blog.getUserId()));
+        //先去Redis查，没有再去数据库查
+        Blog blog= (Blog) redisService.hget("blogs",id.toString());
+
+        if(blog==null) {
+
+            blog=blogMapper.getBlogById(id);
+
+            blog.setType(typeMapper.getTypeById(blog.getTypeId()));
+
+            blog.setUser(userMapper.getUser(blog.getUserId()));
+
+        }
+        else{
+
+        }
         return blog;
 
     }
@@ -72,13 +82,30 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog getBlogToIndex(Long id) {
 
-        Blog blog=blogMapper.getBlogById(id);
-        if(blog==null)
-            throw new NotFoundException("博客不存在");
-        String content=blog.getContent();
-        blog.setContent(MarkDownUtils.markdownToHtmlExtensions(content));
-        blog.setType(typeMapper.getTypeById(blog.getTypeId()));
-        blog.setUser(userMapper.getUser(blog.getUserId()));
+        //先去Redis查，没有再去数据库查
+        Blog blog= (Blog) redisService.hget("blogs",id.toString());
+
+        if(blog==null){
+
+             blog=blogMapper.getBlogById(id);
+
+            String content=blog.getContent();
+
+            blog.setContent(MarkDownUtils.markdownToHtmlExtensions(content));
+
+            blog.setType(typeMapper.getTypeById(blog.getTypeId()));
+
+            blog.setUser(userMapper.getUser(blog.getUserId()));
+
+        }
+        else {
+
+            String content=blog.getContent();
+
+            blog.setContent(MarkDownUtils.markdownToHtmlExtensions(content));
+
+        }
+
         return blog;
     }
 
@@ -154,6 +181,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public ShowBlog showblog(Long id) {
+
         ShowBlog blog= blogMapper.getBlogById_2(id);
 
         blog.setType(typeMapper.getTypeById(blog.getTypeId()));
@@ -163,27 +191,42 @@ public class BlogServiceImpl implements BlogService {
     }
 
 
+    /**
+     * 最新文章
+     * @return
+     */
     @Override
     public List<BlogWithType> blogTop() {
+
         return blogMapper.blogTop();
+
     }
 
 
     /**
-     * 主页博客查询
+     * 主页博客显示
      * @return
      */
     @Override
     public List<Blog> showAllBlog() {
-        List<Blog> blog= blogMapper.showBlog_Publish();
-
-        for(Blog blogs:blog){
-
-            blogs.setType(typeMapper.getTypeById(blogs.getTypeId()));
-
-            blogs.setUser(userMapper.getUser(blogs.getUserId()));
-
+        List<Blog> blog=new ArrayList<>();
+        Set<Object> set=redisService.hmgetitem("blogs");
+        for(Object o:set){
+            Blog blogs = (Blog) redisService.hget("blogs", o.toString());
+            System.out.println(blogs.getTitle());
+            blog.add(blogs);
         }
+        if(blog.size()==0){
+            blog=blogMapper.showBlog_Publish();
+            for(Blog blogs:blog){
+
+                blogs.setType(typeMapper.getTypeById(blogs.getTypeId()));
+
+                blogs.setUser(userMapper.getUser(blogs.getUserId()));
+
+            }
+        }
+
         return blog;
     }
     /**
@@ -224,10 +267,7 @@ public class BlogServiceImpl implements BlogService {
             blog.setTag(tagService.listTagByBlog(blog.getTagIds()));
 
         }
-
-
         return blogs;
-
     }
 
     /**

@@ -172,7 +172,7 @@ public  class RedisUtils {
      * @param item 项 不能为null
      */
     public Object hget(String key, String item) {
-        return redisTemplate.opsForHash().get(key, item);
+        return  redisTemplate.opsForHash().get(key, item);
     }
 
     /**
@@ -185,6 +185,16 @@ public  class RedisUtils {
         return redisTemplate.opsForHash().entries(key);
     }
 
+    /**
+     * 获取所有的item
+     * @param key
+     * @return
+     */
+    public Set<Object> hmgetitem(String key){
+
+        return redisTemplate.opsForHash().keys("blogs");
+
+    }
     /**
      * HashSet
      *
@@ -235,6 +245,7 @@ public  class RedisUtils {
     public boolean hset(String key, String item, Object value) {
         try {
             redisTemplate.opsForHash().put(key, item, value);
+            System.out.println("成功插入");
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -261,6 +272,21 @@ public  class RedisUtils {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    /**
+     * 获取hash表中键值对的数量
+     * @param key
+     * @return
+     */
+    public Long hlen(String key){
+        try{
+            return redisTemplate.opsForHash().size(key);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

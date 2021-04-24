@@ -2,11 +2,12 @@ package com.blog.bean;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Data
-public class Blog {
+public class Blog implements Serializable {
 
     private Long id;
 
@@ -120,4 +121,91 @@ public class Blog {
         this.userId = userId;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public List<Tag> getTag() {
+        return tag;
+    }
+
+    public void setTag(List<Tag> tag) {
+        this.tag = tag;
+    }
+
+    public boolean isAppreciation() {
+        return appreciation;
+    }
+
+    public void setAppreciation(boolean appreciation) {
+        this.appreciation = appreciation;
+    }
+
+    public boolean isShareStatement() {
+        return shareStatement;
+    }
+
+    public void setShareStatement(boolean shareStatement) {
+        this.shareStatement = shareStatement;
+    }
+
+    public boolean isCommentabled() {
+        return commentabled;
+    }
+
+    public void setCommentabled(boolean commentabled) {
+        this.commentabled = commentabled;
+    }
+
+    public boolean isPublished() {
+        return published;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
+
+    public boolean isRecommend() {
+        return recommend;
+    }
+
+    public void setRecommend(boolean recommend) {
+        this.recommend = recommend;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String tagIds) {
+        this.tagIds = tagIds;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
 }

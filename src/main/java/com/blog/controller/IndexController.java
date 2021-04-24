@@ -40,7 +40,7 @@ public class IndexController {
         //查询分类
         List<Type> allType=typeService.listType();
         //查询标签
-        List<Tag> allTag=tagService.listTag();
+       // List<Tag> allTag=tagService.listTag();
 
         List<BlogWithType> topBlog=blogService.blogTop();
 
@@ -48,7 +48,7 @@ public class IndexController {
 
         model.addAttribute("types",allType);
 
-        model.addAttribute("tags",allTag);
+       // model.addAttribute("tags",allTag);
 
         model.addAttribute("topBlog",topBlog);
 

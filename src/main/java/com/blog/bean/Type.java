@@ -4,12 +4,13 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @ToString
-public class Type {
+public class Type implements Serializable {
     private Long id;
 
     @NotEmpty(message = "分类名称不能为空")

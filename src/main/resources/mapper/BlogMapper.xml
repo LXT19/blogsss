@@ -104,7 +104,7 @@
     </select>
 
     <select id="blogTop" resultType="com.blog.bean.BlogWithType">
-        select title from t_blog where published=1 and recommend=1 order by update_time desc limit 8;
+        select id,title from t_blog where published=1 and recommend=1 order by update_time desc limit 8
     </select>
 
     <insert id="saveBlog" parameterType="com.blog.bean.Blog">

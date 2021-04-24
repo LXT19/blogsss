@@ -1,9 +1,10 @@
 package com.blog.bean;
 
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 import java.util.List;
 
-public class Tag {
+public class Tag implements Serializable {
     private Long id;
 
     @NotEmpty(message = "标签名称不能为空")
