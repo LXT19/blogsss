@@ -83,28 +83,32 @@ public class BlogServiceImpl implements BlogService {
     public Blog getBlogToIndex(Long id) {
 
         //先去Redis查，没有再去数据库查
-        Blog blog= (Blog) redisService.hget("blogs",id.toString());
+       // Blog blog= (Blog) redisService.hget("blogs",id.toString());
 
-        if(blog==null){
+       // if(blog==null){
 
-             blog=blogMapper.getBlogById(id);
+        Blog blog=blogMapper.getBlogById(id);
+
+        String content=blog.getContent();
+
+        blog.setContent(MarkDownUtils.markdownToHtmlExtensions(content));
+
+        blog.setType(typeMapper.getTypeById(blog.getTypeId()));
+
+        blog.setUser(userMapper.getUser(blog.getUserId()));
+
+        System.out.println(blog.getUser().getUsername());
+
+       // }
+        /*else {
 
             String content=blog.getContent();
 
             blog.setContent(MarkDownUtils.markdownToHtmlExtensions(content));
-
-            blog.setType(typeMapper.getTypeById(blog.getTypeId()));
 
             blog.setUser(userMapper.getUser(blog.getUserId()));
 
-        }
-        else {
-
-            String content=blog.getContent();
-
-            blog.setContent(MarkDownUtils.markdownToHtmlExtensions(content));
-
-        }
+        }*/
 
         return blog;
     }

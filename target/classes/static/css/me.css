@@ -2,7 +2,7 @@
     background: darkcyan;
 }
 .m-padded-min{
-    padding: 0.2em;!important;
+    padding: 0.3em;!important;
 }
 .m-padded{
     padding: 3em;!important;
@@ -41,15 +41,17 @@
     right: 0;!important;
 }
 
+.shadow {
+    text-shadow: 1px 1px ;
+
+}
+
 /*---------------------*/
 .m-text{
-    font-weight: 300;!important;
     letter-spacing: 1px; !important;
     line-height: 1.8;
 }
-.m-text-thin{
-    font-weight: 300 !important;
-}
+
 .m-text-spaced{
     letter-spacing: 1px; !important;
 }
@@ -116,7 +118,7 @@
     font-family: 华文楷体;
 }
 .m-container-color{
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
 
 }
 .m-image-size{
@@ -139,7 +141,10 @@
 
 }
 .background-color {
-    background: rgba(255, 255, 255, 0.6);!important;
+    background: rgba(255, 255, 255, 0.8);!important;
+}
+.background-color-w {
+    background: rgba(255, 255, 255, 0.9);!important;
 }
 .m-th{
     width: 12%;
@@ -153,6 +158,10 @@
 .m-padded-left{
     padding-left: 2em;
 
+}
+.m-image-size-min{
+    width: 320px;
+    height: 289px;
 }
 
 

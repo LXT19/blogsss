@@ -18,13 +18,14 @@
     <div class="ui container">
         <div class="ui inverted  secondary menu">
 
-            <h2 class="ui teal header item">blog</h2>
+            <h1 class="ui blue header item">blog</h1>
 
             <a href="#" th:href="@{/}" class="item active m-font-size " th:classappend="${n==1} ? 'active'"><i class="home icon "></i>首页</a>
             <a href="blog.html" th:href="@{/type/-1}" class="item m-font-size" th:classappend="${n==2} ? 'active'"><i class="idea icon"></i>分类</a>
            <!-- <a href="#" class="item m-font-size" th:classappend="${n==3} ? 'active'"><i class="tags icon"></i> 标签</a>-->
             <a href="#" th:href="@{/archive}" class="item m-font-size" th:classappend="${n==4} ? 'active'"><i class="clone icon"></i> 归档</a>
-            <a href="#" th:href="@{/archive}" class="item m-font-size" th:classappend="${n==4} ? 'active'"><i class="image icon"></i> 照片墙</a>
+            <a href="#" th:href="@{/picture}" class="item m-font-size" th:classappend="${n==3} ? 'active'"><i class="image icon"></i> 照片墙</a>
+            <a href="#" th:href="@{/face}" class="item m-font-size" th:classappend="${n==6} ? 'active'"><i class="edit outline icon"></i> 面试题</a>
             <a href="#" th:href="@{/about}" class="item m-font-size" th:classappend="${n==5} ? 'active'"><i class="info icon"></i> 关于我</a>
             <div class="right item">
                 <form name="search" action="#" method="post" th:action="@{/search}" target="_blank">
@@ -83,12 +84,18 @@
 
 <th:block  th:fragment="script">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
     <script src="../static/lib/prisim/prism.js" th:src="@{/lib/prisim/prism.js}"></script>
     <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
     <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
     <script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+    <script src="../static/lib/bg/jquery.js" th:src="@{/lib/bg/jquery.js}"></script>
+    <script src="../static/lib/bg/bootstrap.min.js" th:src="@{/lib/bg/bootstrap.min.js}"></script>
+    <script src="../static/lib/bg/jquery.backstretch.min.js" th:src="@{/lib/bg/jquery.backstretch.min.js}"></script>
+    <script src="../static/lib/bg/custom.js" th:src="@{/lib/bg/custom.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
 </th:block>
 
 </body>

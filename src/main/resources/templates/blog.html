@@ -12,7 +12,7 @@
 
     <title>博客详情</title>
 </head>
-<body style="background-image: url('https://picsum.photos/id/1011/1920/2200');background-repeat:no-repeat ;background-attachment: fixed;" >
+<body style="background-image: url('https://picsum.photos/id/1033/1920/1280');background-repeat:no-repeat ;background-attachment: fixed;" >
     <!--导航-->
 
     <div class="background-color">
@@ -462,7 +462,7 @@ h5,h6{font-size:1em;}
                 <div class="ui middle aligned grid">
                     <div class="eleven wide column ">
                         <ui class="list ">
-                            <li th:text="${'作者：'+blog.getUser().username}+">作者：林旭涛{联系作者}</li>
+                            <!--<li th:text="${'作者：'+blog.getUser().username}+">作者：林旭涛{联系作者}</li>-->
                             <br>
                             <li th:text="${'发表时间：'+#dates.format(blog.updateTime,'yyyy-MM-DD')}">发表时间：2023-1-12</li>
                             <br>

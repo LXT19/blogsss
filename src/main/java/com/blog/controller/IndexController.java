@@ -91,6 +91,7 @@ public class IndexController {
     public String blog(@PathVariable Long id,Model model){
 
         Blog blog=blogService.getBlogToIndex(id);
+        System.out.println(blog.getUser().getUsername());
         blogService.updateBlogView(blog.getId());
         blog.setTag(tagService.listTagByBlog(blog.getTagIds()));
         //List<Tag> tag=tagService.listTagByBlog(blog.getTagIds());

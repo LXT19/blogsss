@@ -10,43 +10,91 @@
 </head>
 <body style="background-image: url('https://picsum.photos/id/1011/1920/2200');background-repeat:no-repeat ;background-attachment: fixed;" >
 <!--导航-->
-<nav th:replace="_fragments :: menu(2)"></nav>
+<nav th:replace="_fragments :: menu(3)"></nav>
 
 <!--中间内容-->
 <div class="m-container-small m-margin-top-lager">
     <div class="ui  container">
 
+
+        <div class="ui segment     background-color" >
+            <h2 class="ui header">仲恺美景</h2>
+        </div>
+
+        <!--<table class="ui table">
+            <tbody>
+            <tr>
+                <h2 class="ui header">&nbsp;&nbsp;&nbsp;白云</h2>
+            </tr>
+            <tr >
+                <td ><img src="../static/images/bai1.jpg" th:src="@{images/bai1.jpg}" alt="" class="m-image-size-min"></td>
+                <td><img src="../static/images/bai2.jpg" th:src="@{images/bai2.jpg}" alt="" class="m-image-size-min"></td>
+                <td><img src="../static/images/bai3.jpg" th:src="@{images/bai3.jpg}" alt="" class="m-image-size-min"></td>
+
+            </tr>
+            <tr >
+                <td><img src="../static/images/bai4.jpg" th:src="@{images/bai4.jpg}" alt="" class="m-image-size-min"></td>
+                <td><img src="../static/images/bai5.jpg" th:src="@{images/bai5.jpg}" alt="" class="m-image-size-min"></td>
+                <td><img src="../static/images/bai6.jpg" th:src="@{images/bai6.jpg}" alt="" class="m-image-size-min"></td>
+
+            </tr>
+            </tbody>
+        </table>
+        <table class="ui table">
+            <tbody>
+            <tr>
+                <h2 class="ui header">&nbsp;&nbsp;&nbsp;海珠</h2>
+            </tr>
+            <tr >
+                <td ><img src="../static/images/hai1.jpg" th:src="@{images/hai1.jpg}" alt="" class="m-image-size-min"></td>
+                <td><img src="../static/images/hai2.jpg" th:src="@{images/hai2.jpg}" alt="" class="m-image-size-min"></td>
+                <td><img src="../static/images/hai3.jpg" th:src="@{images/hai3.jpg}" alt="" class="m-image-size-min"></td>
+
+            </tr>
+            <tr >
+                <td><img src="../static/images/hai4.jpg" th:src="@{images/hai4.jpg}" alt="" class="m-image-size-min"></td>
+                <td><img src="../static/images/hai5.jpg" th:src="@{images/hai5.jpg}" alt="" class="m-image-size-min"></td>
+                <td><img src="../static/images/hai6.jpg" th:src="@{images/hai6.jpg}" alt="" class="m-image-size-min"></td>
+
+            </tr>
+            </tbody>
+        </table>
+-->
         <div class="ui segment">
-            <h2 class="ui header">照片</h2>
+            <h2 class="ui header">照片墙</h2>
         </div>
         <table class="ui table">
             <tbody>
             <tr >
-                <td><img src="../static/images/bg.jpg"></td>
+                <td ><img src="https://picsum.photos/id/1026/320/289" alt=""  class="m-image-size-min"></td>
+                <td><img src="https://picsum.photos/id/1029/320/289" alt=""  class="m-image-size-min"></td>
+                <td><img src="https://picsum.photos/id/1031/320/289" alt=""  class="m-image-size-min"></td>
 
-                <td><img src="../static/images/bg.jpg"></td>
             </tr>
             <tr >
-                <td><img src="../static/images/bg.jpg"></td>
+                <td><img src="https://picsum.photos/id/1033/320/289" alt=""  class="m-image-size-min"></td>
+                <td><img src="https://picsum.photos/id/1037/320/289" alt=""  class="m-image-size-min"></td>
+                <td><img src="https://picsum.photos/id/1049/320/289" alt=""  class="m-image-size-min"></td>
 
-                <td><img src="../static/images/bg.jpg"></td>
             </tr>
             </tbody>
         </table>
         <div class="ui segment">
-            <h2 class="ui header">照片</h2>
+            <h2 class="ui header">云外之景</h2>
         </div>
         <table class="ui table">
             <tbody>
             <tr >
-                <td><img src="../static/images/bg.jpg"></td>
+                <td ><img src="https://picsum.photos/id/1044/320/289" alt=""  class="m-image-size-min"></td>
+                <td><img src="https://picsum.photos/id/1048/320/289" alt=""  class="m-image-size-min"></td>
+                <td><img src="https://picsum.photos/id/1051/320/289" alt=""  class="m-image-size-min"></td>
 
-                <td><img src="../static/images/bg.jpg"></td>
             </tr>
             <tr >
-                <td><img src="../static/images/bg.jpg"></td>
+                <td><img src="https://picsum.photos/id/1054/320/289" alt=""  class="m-image-size-min"></td>
+                <td><img src="https://picsum.photos/id/1047/320/289" alt=""  class="m-image-size-min"></td>
+                <td><img src="https://picsum.photos/id/1052/320/289" alt=""  class="m-image-size-min"></td>
 
-                <td><img src="../static/images/bg.jpg"></td>
             </tr>
             </tbody>
         </table>
@@ -61,9 +109,10 @@
 
 <!--底部-->
 <footer th:replace="_fragments :: footer"></footer>
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--/*/</th:block>/*/-->
+
 <script>
 
 </script>

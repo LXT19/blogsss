@@ -23,20 +23,20 @@
                         <div class="eleven wide column ">
                             <div class="background-color">
                                 <!--头部内容-->
-                                <div class="ui basic  segment ">
+                                <div class="ui  segment m-padded-min">
                                     <div class="ui middle aligned two column grid">
                                         <div class="column">
-                                            <h3 class="ui teal header">博客</h3>
+                                            <h2 class="ui blue header ">博客</h2>
                                         </div>
                                         <div class=" right aligned column ">
-                                            <h3 class="ui teal header m-inline-block" th:text="'共'+${pageInfo.total}+'篇'">共7篇</h3>
+                                            <h2 class="ui blue header m-inline-block" th:text="'共'+${pageInfo.total}+'篇'">共7篇</h2>
                                         </div>
                                     </div>
                                 </div>
                                 <!--中间内容-->
                                 <div class="ui attached basic  segment " th:each="blog:${pageInfo.list}">
-                                    <div class="ui padded  vertical segment m-padded-tb-lager " >
-                                        <div class="ui grid ">
+                                    <div class="ui padded  background-color-w  segment m-padded-tb-lager " >
+                                        <div class="ui grid  ">
                                             <div class="eleven wide column">
                                                 <h3 class="ui header" ><a  href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" th:text="${blog.title}">JAVA中为什么只有值传递</a></h3>
                                                 <p class="m-text " th:text="${blog.getDescription()}">对于基本数据类型的值传递容易理解
@@ -64,7 +64,7 @@
 
                                                     </div>
                                                     <div class="right aligned four wide column">
-                                                        <a href="#" target="_blank" class="ui basic green label"><span th:text="${blog.getType().name}">认知升级</span></a>
+                                                        <a href="#" target="_blank" class="ui basic blue label"><span th:text="${blog.getType().name}">认知升级</span></a>
                                                     </div>
                                                 </div>
 
@@ -76,16 +76,21 @@
                                                 </a>
                                             </div>
                                         </div>
+
                                     </div>
+
+
                                 </div>
+
+
                                 <!--底部-->
                                 <div class="ui bottom basic segment">
                                     <div class="ui middle aligned two column grid">
                                         <div class="column">
-                                            <a href="#" th:href="@{/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" class="ui yellow basic button">上一页</a>
+                                            <a href="#" th:href="@{/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" class="ui blue basic button">上一页</a>
                                         </div>
                                         <div class=" right aligned column ">
-                                            <a href="#" th:href="@{/(pageNum= ${pageInfo.hasNextPage}?${pageInfo.nextPage})}" class="ui  yellow basic button">下一页</a>
+                                            <a href="#" th:href="@{/(pageNum= ${pageInfo.hasNextPage}?${pageInfo.nextPage})}" class="ui  blue basic button">下一页</a>
                                         </div>
                                     </div>
                                 </div>
@@ -105,7 +110,7 @@
 
                                 </div>
                             </div>
-                            <div class="ui teal attached segment">
+                            <div class="ui blue attached segment">
                                 <div class="ui fluid vertical menu"th:each="type : ${types}" >
                                     <a href="#" th:href="@{/type/{id}(id=${type.id})}" class="item" >
                                         <span th:text="${type.name}">学习日志</span>
@@ -125,7 +130,7 @@
 
 <!--                                </div>-->
 <!--                            </div>-->
-<!--                            <div class="ui teal attached segment">-->
+<!--                            <div class="ui blue attached segment">-->
 <!--                                <a href="#" target="_blank" class="ui basic left pointing label m-margin-tb-tiny" th:each="tag:${tags}">-->
 <!--                                    <span th:text="${tag.name}">方法</span>-->
 <!--                                    &lt;!&ndash;<div class="detail">23</div>&ndash;&gt;-->
@@ -139,7 +144,7 @@
                                 <i class="bookmark icon"></i> 最新推荐
                             </div>
                             <div class="ui segment" th:each="top:${topBlog}">
-                                <a href="#" target="_blank" style="color: #333333"><span th:text="${top.title}">用户故事</span></a>
+                                <a href="#" th:href="@{/blog/{id}(id=${top.id})}" target="_blank" style="color: #333333"><span th:text="${top.title}">用户故事</span></a>
                             </div>
 
                         </div>
@@ -168,5 +173,6 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 -->
+
 </body>
 </html>

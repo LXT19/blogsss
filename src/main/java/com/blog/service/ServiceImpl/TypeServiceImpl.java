@@ -51,13 +51,11 @@ public class TypeServiceImpl implements TypeService {
 //            list.add(type);
 //        }
         //Redis没有，再去数据库查
-        if(list.size()==0){
-            list=typeMapper.getAdminType();
-            for(Type type:list){
-                type.setBlogs(blogMapper.getBlogByType(type.getId()));
-                //同时将数据保存到Redis中
-                //redisService.hset("type",type.getId().toString(),type);
-            }
+        list=typeMapper.getAdminType();
+        for(Type type:list){
+            type.setBlogs(blogMapper.getBlogByType(type.getId()));
+            //同时将数据保存到Redis中
+            //redisService.hset("type",type.getId().toString(),type);
         }
 
         return list;

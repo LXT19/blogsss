@@ -1,9 +1,11 @@
 package com.blog;
 
 import com.blog.bean.*;
+import com.blog.mapper.QuestionMapper;
 import com.blog.mapper.TagMapper;
 import com.blog.mapper.TypeMapper;
 import com.blog.service.BlogService;
+import com.blog.service.QuestionService;
 import com.blog.service.TypeService;
 import com.blog.service.UserService;
 import com.blog.util.RedisUtils;
@@ -16,10 +18,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.BoundListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
+import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 @SpringBootTest
 class BlogApplicationTests {
@@ -42,6 +46,21 @@ class BlogApplicationTests {
     @Autowired
     private TypeService typeService;
 
+    @Autowired
+    private QuestionMapper questionMapper;
+
+    @Autowired
+    private QuestionService questionService;
+
+    @Test
+    void getQuestionType(){
+        List<Q_type> list=questionService.getQuestionType();
+        for(Q_type q:list)
+            System.out.println(q);
+
+
+    }
+
     @Test
     void contextLoads() {
 
@@ -59,6 +78,8 @@ class BlogApplicationTests {
         temp.setPassword("123456");
         User user=userService.checkUserByName(temp.getUsername());
         System.out.println(user);
+        
+
 
 
     }

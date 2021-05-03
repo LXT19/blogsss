@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.mapper.QuestionMapper">
+
+    <resultMap id="q_type" type="com.blog.bean.Q_type">
+        <id property="id" column="id"/>
+        <result property="f_type" column="f_type"/>
+    </resultMap>
+
+    <resultMap id="question" type="com.blog.bean.Question">
+        <id property="id" column="id"/>
+        <result property="f_typeId" column="f_typeId"/>
+        <result property="f_answer" column="f_answer"/>
+        <result property="f_question" column="f_question"/>
+    </resultMap>
+
+
+    <select id="getQuestionById" resultType="com.blog.bean.Question">
+        select * from t_question where id=#{id};
+    </select>
+
+    <select id="getQuestionByType"  resultMap="question">
+        select * from t_question where f_typeId=#{type};
+    </select>
+
+    <select id="getQuestionType" resultMap="q_type">
+        select id,f_type from t_f_type
+    </select>
+
+    <select id="getQuestionDisplay" resultMap="question">
+        select * from t_question where f_typeId=#{type} LIMIT 1;
+    </select>
+
+    <select id="getTypeById" resultMap="q_type">
+        select  * from t_f_type where id=#{id}
+    </select>
+
+
+
+</mapper>
