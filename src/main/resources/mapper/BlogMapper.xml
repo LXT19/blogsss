@@ -76,7 +76,7 @@
     </select>
 
     <select id="contBlog" resultType="Integer">
-        select count(id) from t_blog;
+        select count(id) from t_blog where published=1;
     </select>
 
     <select id="showBlogByyear" resultType="com.blog.bean.Blog">

@@ -22,7 +22,8 @@
                     <!--左边博客列表-->
                     <div class="background-color">
                                 <!--头部内容-->
-                                <div class="ui basic  segment ">
+                                <br>
+                                <div class="ui   segment ">
                                     <div class="ui middle aligned two column grid">
                                         <div class="column">
                                             <h3 class="ui teal header">博客</h3>
@@ -33,7 +34,7 @@
                                     </div>
                                 </div>
                                 <!--中间内容-->
-                                <div class="ui attached basic  segment " th:each="blog:${pageInfo.list}">
+                                <div class="ui    segment " th:each="blog:${pageInfo.list}">
                                     <div class="ui padded  vertical segment m-padded-tb-lager " >
                                         <div class="ui grid ">
                                             <div class="eleven wide column">
@@ -78,7 +79,7 @@
                                     </div>
                                 </div>
                                 <!--底部-->
-                                <div class="ui bottom basic segment">
+                                <div class="ui bottom  segment">
                                     <div class="ui middle aligned two column grid">
                                         <div class="column">
                                             <a href="#" th:href="@{/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" class="ui yellow basic button">上一页</a>

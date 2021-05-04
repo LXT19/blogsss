@@ -12,4 +12,9 @@ public class AboutController {
 
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return "test";
+    }
+
 }

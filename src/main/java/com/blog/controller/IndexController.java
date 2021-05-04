@@ -63,7 +63,7 @@ public class IndexController {
     }
     @GetMapping("/input")
     public String input(){
-        return "./admin/blogs-input";
+        return "blogs-test";
     }
 
     @PostMapping("/search")

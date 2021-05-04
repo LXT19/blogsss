@@ -14,7 +14,7 @@
 <nav th:replace="_fragments :: menu(6)"></nav>
 
 <!--中间内容-->
-<div class="  m-padded-tb-tb" >
+<div class="  m-padded-tb-tb" id="p-container">
     <br>
     <br>
     <div class="ui container  ">
@@ -22,7 +22,8 @@
             <!--左边博客列表-->
                 <div class="background-color">
                     <!--头部内容-->
-                    <div class="ui basic  segment ">
+                    <br>
+                    <div class="ui   segment ">
                         <div class="ui middle aligned two column grid">
                             <div class="column">
                                 <h2 class="ui blue header">面试题集</h2>
@@ -33,7 +34,7 @@
                         </div>
                     </div>
                     <!--中间内容-->
-                    <div class="ui attached basic  segment " th:each="type:${pageInfo.list}">
+                    <div class="ui    segment " th:each="type:${pageInfo.list}">
                         <div class="ui padded  vertical segment m-padded-tb-lager " >
                             <div class="ui grid ">
 
@@ -45,32 +46,7 @@
                                         JRE只包含java所运行的工具，如JVM，java的基本类库，java命令，以及一些基本组件。
                                         如果只是运行java程序，就只需用到jre,如果需要开发java程序，就需要用到jdk
                                         <br>
-
                                     </div>
-                                    <!--<div class="ui grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui horizontal link list">
-                                                <div class="item">
-                                                    <div class="content">
-                                                    </div>
-                                                    <div class="item">
-                                                        <img src="https://picsum.photos/id/1005/100/100" th:src="@{${blog.getUser().getAvatar()}}" alt="" class="ui avatar image ">
-                                                        <a href="#" ></a><span th:text="${blog.getUser().username}+'  &nbsp&nbsp &nbsp&nbsp'" >林旭涛  &nbsp&nbsp &nbsp&nbsp</span>
-                                                        <i class="calendar icon"></i>  <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')+'&nbsp&nbsp &nbsp&nbsp'}">2021-3-31&nbsp&nbsp</span>
-                                                        <i class="eye icon"></i> <span th:text="${blog.getViews()}">2356&nbsp</span>
-                                                    </div>
-                                                    <div class="item">
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="right aligned four wide column">
-                                            <a href="#" target="_blank" class="ui basic green label"><span th:text="${blog.getType().name}">认知升级</span></a>
-                                        </div>
-                                    </div>-->
-
                                 </div>
 
 
@@ -80,10 +56,10 @@
                     <div class="ui bottom basic segment">
                         <div class="ui middle aligned two column grid">
                             <div class="column">
-                                <a href="#" th:href="@{/face(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" class="ui yellow basic button">上一页</a>
+                                <a href="#" th:href="@{/face(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" class="ui blue basic button">上一页</a>
                             </div>
                             <div class=" right aligned column ">
-                                <a href="#" th:href="@{/face(pageNum= ${pageInfo.hasNextPage}?${pageInfo.nextPage})}" class="ui  yellow basic button">下一页</a>
+                                <a href="#" th:href="@{/face(pageNum= ${pageInfo.hasNextPage}?${pageInfo.nextPage})}" class="ui  blue basic button">下一页</a>
                             </div>
                         </div>
                     </div>

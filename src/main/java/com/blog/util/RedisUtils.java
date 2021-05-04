@@ -192,7 +192,7 @@ public  class RedisUtils {
      */
     public Set<Object> hmgetitem(String key){
 
-        return redisTemplate.opsForHash().keys("blogs");
+        return redisTemplate.opsForHash().keys(key);
 
     }
     /**

@@ -10,8 +10,8 @@
 </head>
 <body style="background-image: url('https://picsum.photos/id/1011/1920/2200');background-repeat:no-repeat ;background-attachment: fixed;">
 <!--导航-->
-
-<nav class="ui   attached  inverted   segment m-padded-tb-lager ">
+<nav th:replace="admin/_fragment :: menu(2)"></nav>
+<!--<nav class="ui   attached  inverted   segment m-padded-tb-lager ">
     <div class="ui  container">
         <div class="ui inverted  secondary menu">
             <h2 class="ui solar-green header item">后台管理</h2>
@@ -36,13 +36,13 @@
         <i class="sidebar icon"></i>
     </a>
 
-</nav>
+</nav>-->
 <div class="ui  attached  pointing  menu segment">
     <div class="ui  container">
         <div class="ui  menu">
 
             <a href="#" th:href="@{/admin/type}" class=" active item"><i class="list blue icon"></i>分类列表</a>
-            <a href="#" th:href="@{/admin/type/input}" class="item"><i class="plus icon"></i>分类新增</a>
+            <a href="#" class="item" th:onclick="add_type()" onclick="add_type()"><i class="plus icon" ></i>分类新增</a>
         </div>
     </div>
 
@@ -51,12 +51,12 @@
 <!--中间内容-->
 <div class="m-container-small m-margin-top-lager">
     <div class="ui  container">
-        <!--<div class="ui success message" th:unless="${#strings.isEmpty(#messages)}">
+        <div class="ui success message" th:if="${not #strings.isEmpty(type_message)}">
             <i class="close icon"></i>
             <div class="header">提示：</div>
             <br>
-            <p th:text="${mess}">添加成功！</p>
-        </div>-->
+            <p th:text="${type_message}">添加成功！</p>
+        </div>
 
         <table class="ui table">
             <thead>
@@ -88,37 +88,49 @@
                         </div>
                     </th>
                     <th colspan="3" class="center aligned ">
-                        <a href="#" th:href="@{/admin/type/input}" class="ui  basic teal button  ">新增</a>
+                        <a href="#"  class="ui  basic teal button" th:onclick="add_type()" onclick="add_type()">新增</a>
                     </th>
                 </tr>
             </tfoot>
         </table>
 
-        <div class="ui basic modal">
-            <div class="ui icon header">
-                <i class="archive icon"></i>
-                确定要删除该分类吗?
-            </div>
-            <div class="content">
-                <p></p>
-            </div>
-            <div class="actions">
-                <div class="ui red basic cancel inverted button">
-                    <i class="remove icon"></i>
-                    否
+
+            <div class="ui modal">
+                <i class="close icon"></i>
+                <div class="header">
+                    添加分类
                 </div>
-                <button class="ui green ok inverted button" type="button" >
-                    <i class="checkmark icon"></i>
-                    是
-                </button>
+                <form method="post" th:action="@{/admin/input-type}" class="ui  from segment">
+                    <div class="field">
+                        <div class="description">
+                            <div class="ui header">请填写要添加的分类</div>
+                            <div class="ui input">
+                                <input type="text" name="name" class="ui input" >
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="field" >
+                        <button class="ui black deny button ">
+                            取消
+                        </button>
+                        <button type="submit" class="ui positive  labeled icon button ">
+                            添加
+                            <i class="checkmark icon"></i>
+                        </button>
+
+                    </div>
+                </form>
             </div>
-        </div>
+
+
     </div>
 </div>
 <br>
 <br>
 <!--底部-->
-<footer class="ui inverted vertical stackable segment m-padded-tb-massive">
+<footer class="ui inverted vertical stackable segment m-padded-tb-lager">
     <div class="ui  center aligned container">
         <div class="ui inverted divided grid">
             <div class="three wide column">
@@ -149,11 +161,10 @@
 
         </div>
         <p>Copyright@2021-2022 design by linxutao</p>
-        <br>
+
     </div>
 
 </footer>
-
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
@@ -167,11 +178,14 @@
         .transition('fade');
     });
 
-   /* $('.ui.deletes')
-        .on("click",function () {
-            $('.ui.basic.modal')
+    function add_type() {
+
+        $('.ui.modal')
             .modal('show')
-        });*/
+        ;
+
+    };
+
 
 
 </script>

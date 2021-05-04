@@ -5,9 +5,11 @@ import com.blog.mapper.BlogMapper;
 import com.blog.mapper.TypeMapper;
 import com.blog.service.TypeService;
 import com.blog.util.RedisUtils;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -42,28 +44,36 @@ public class TypeServiceImpl implements TypeService {
      */
     @Override
     public List<Type> listType() {
-        List<Type> list= new LinkedList<>();
+        List<Type> list= new ArrayList<>();
         //先从Redis查
-//        Set<Object> set=redisService.hmgetitem("type");
-//        for(Object o:set){
-//            Type type=(Type) redisService.hget("type",o.toString());
-//            //type.setBlogs(blogMapper.getBlogByType(type.getId()));
-//            list.add(type);
-//        }
-        //Redis没有，再去数据库查
-        list=typeMapper.getAdminType();
-        for(Type type:list){
-            type.setBlogs(blogMapper.getBlogByType(type.getId()));
-            //同时将数据保存到Redis中
-            //redisService.hset("type",type.getId().toString(),type);
+        Set<Object> set=redisService.hmgetitem("type");
+        System.out.println(set.size());
+        if(set.size()!=0){
+            for(Object o:set){
+                Type type=(Type) redisService.hget("type",o.toString());
+                type.setBlogs(blogMapper.getBlogByType(type.getId()));
+                list.add(type);
+            }
+
         }
+        //Redis没有，再去数据库查
+        if(list.size()==0){
+            list=typeMapper.getAdminType();
+            for(Type type:list){
+                type.setBlogs(blogMapper.getBlogByType(type.getId()));
+                //同时将数据保存到Redis中
+                redisService.hset("type",type.getId().toString(),type);
+            }
+
+        }
+
 
         return list;
     }
 
     @Override
-    public int updateType(Long id, Type type) {
-        return typeMapper.updateType(id,type);
+    public int updateType( Long id,  String name) {
+        return typeMapper.updateType(id,name);
     }
 
     @Override

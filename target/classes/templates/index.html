@@ -6,17 +6,85 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
     <link rel="stylesheet" href="../static/css/me.css" >
 
+    <link rel="stylesheet" href="../static/css/csslider.default.css" th:href="@{/css/csslider.default.css}">
     <title>主页</title>
 </head>
-<body style="background-image: url('https://picsum.photos/id/1011/1920/2200');background-repeat:no-repeat ;background-attachment: fixed;" >
+<body style="background-image: url('https://picsum.photos/id/1033/1920/1280');background-repeat:no-repeat ;background-attachment: fixed;" >
     <!--导航-->
 
     <nav th:replace="_fragments :: menu(1)"></nav>
+   <!-- <div class="imgBox">
+
+            <img class="ui  rounded image img-slide img1 " src="https://picsum.photos/id/167/500/680" alt="1">
+
+
+            <img class="ui  rounded image img-slide img2" src="https://picsum.photos/id/17/500/680" alt="2">
+
+
+            <img class="ui  rounded image img-slide img3" src="https://picsum.photos/id/188/500/680" alt="3">
+
+
+    </div>-->
+
+    <!--轮播图-->
+
+    <br>
+    <br>
+    <div style="text-align: center;">
+        <div id="slider1" class="csslider">
+            <input type="radio" name="slides" id="slides_1" checked/>
+            <input type="radio" name="slides" id="slides_2"  />
+            <input type="radio" name="slides" id="slides_3" />
+            <input type="radio" name="slides" id="slides_4" />
+            <ul>
+                <li>
+                    <a href="#" th:href="@{/picture}">
+                        <img src="https://picsum.photos/id/167/800/400" alt="1">
+                    </a>
+
+                </li>
+                <li>
+                    <a href="#" th:href="@{/picture}">
+                        <img src="https://picsum.photos/id/17/800/400"  alt="2"/>
+                    </a>
+
+                </li>
+                <li>
+                    <a href="#" th:href="@{/picture}">
+                        <img src="https://picsum.photos/id/1033/800/400" alt="3">
+                    </a>
+
+                </li>
+                <li >
+                    <a href="#" th:href="@{/picture}">
+                        <img src="https://picsum.photos/id/1047/800/400" alt="4">
+                    </a>
+
+                </li>
+            </ul>
+            <div class="arrows">
+                <label for="slides_1"></label>
+                <label for="slides_2"></label>
+                <label for="slides_3"></label>
+                <label for="slides_4"></label>
+            </div>
+            <div class="navigation">
+                <div>
+                    <label for="slides_1"></label>
+                    <label for="slides_2"></label>
+                    <label for="slides_3"></label>
+                    <label for="slides_4"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
 
     <!--中间内容-->
-    <div class=" m-container m-padded-tb-tb" >
-        <br>
-        <br>
+    <div class=" m-container " id="p-container">
         <div class="ui container  ">
                 <div class="ui  grid ">
                     <!--左边博客列表-->
@@ -34,7 +102,7 @@
                                     </div>
                                 </div>
                                 <!--中间内容-->
-                                <div class="ui attached basic  segment " th:each="blog:${pageInfo.list}">
+                                <div class="ui  basic  segment " th:each="blog:${pageInfo.list}">
                                     <div class="ui padded  background-color-w  segment m-padded-tb-lager " >
                                         <div class="ui grid  ">
                                             <div class="eleven wide column">
@@ -72,7 +140,7 @@
 
                                             <div class="five wide column">
                                                 <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
-                                                    <img src="../static/images/img.png" th:src="@{${blog.firstPicture}}"  alt="" class="ui  rounded image">
+                                                    <img src="../static/images/img.png"  th:src="@{${blog.firstPicture}}"  alt="" class="ui   Large rounded image">
                                                 </a>
                                             </div>
                                         </div>
@@ -168,11 +236,25 @@
 <!--/*/<th:block th:replace="_fragments :: script">/*/-->
 
 <!--/*/</th:block>/*/-->
-
 <!--
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 -->
+    <!--<script type="text/javascript">
+        var index=0;
+        //改变图片
+        function ChangeImg() {
+            index++;
+            var a=document.getElementsByClassName("img-slide");
+            if(index>=a.length) index=0;
+            for(var i=0;i<a.length;i++){
+                a[i].style.display='none';
+            }
+            a[index].style.display='block';
+        }
+        //设置定时器，每隔两秒切换一张图片
+        setInterval(ChangeImg,2000);
+    </script>-->
 
 </body>
 </html>

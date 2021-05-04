@@ -2,6 +2,7 @@ package com.blog.mapper;
 
 import com.blog.bean.Tag;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public interface TagMapper {
 
     int deleteTag(Long id);
 
-    int updateTag(Long id,Tag tag);
+    int updateTag(@Param("id") Long id, @Param("name") String name);
 
 
 }

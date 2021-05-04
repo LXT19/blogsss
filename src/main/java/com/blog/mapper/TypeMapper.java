@@ -1,6 +1,7 @@
 package com.blog.mapper;
 import com.blog.bean.Type;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public interface TypeMapper {
 
     int deleteType(Long id);
 
-    int updateType(Long id,Type type);
+    int updateType(@Param("id") Long id,@Param("name") String name);
 
 
 

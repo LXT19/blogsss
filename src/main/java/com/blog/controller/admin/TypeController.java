@@ -32,7 +32,7 @@ public class TypeController {
      * @return
      */
     @GetMapping("/type")
-    public String list(Model model, @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum){
+    public String list(Model model, @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,RedirectAttributes attributes){
 
         //引入分页插件
         //在查询之前调用，传入页码和每页的大小
@@ -41,6 +41,7 @@ public class TypeController {
         List<Type> allType=typeService.listType();
         PageInfo<Type> pageInfo=new PageInfo<>(allType);
         model.addAttribute("pageInfo",pageInfo);
+        attributes.addFlashAttribute("type_message",null);
         return "admin/type";
 
     }
@@ -75,11 +76,11 @@ public class TypeController {
         int i= typeService.saveType(type);
 
         if(i==0){
-            attributes.addFlashAttribute("type-message","添加失败");
+            attributes.addFlashAttribute("type_message","添加失败");
 
         }
         else {
-            attributes.addFlashAttribute("type-message","添加成功");
+            attributes.addFlashAttribute("type_message","添加成功");
 
         }
         return "redirect:/admin/type";
@@ -101,17 +102,19 @@ public class TypeController {
     /**
      * 更新分类
      * @param id
-     * @param type
+     * @param name
      * @return
      */
     @PostMapping("/type/{id}/update")
-    public String updateType(@PathVariable Long id,Type type){
+    public String updateType(@PathVariable Long id,String name,RedirectAttributes attributes){
 
-        int i=typeService.updateType(id,type);
-        if(i==0){
+        int i=typeService.updateType(id,name);
+        if(i==0)
+            attributes.addFlashAttribute("type_message","更新失败");
+        else
+            attributes.addFlashAttribute("type_message","更新成功");
 
-        }
-        return null;
+        return "redirect:/admin/type";
     }
 
     /**

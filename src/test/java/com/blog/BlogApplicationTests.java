@@ -11,6 +11,7 @@ import com.blog.service.UserService;
 import com.blog.util.RedisUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.sun.org.apache.xpath.internal.objects.XObject;
 import net.bytebuddy.asm.Advice;
 import org.jboss.logging.BasicLogger;
 import org.junit.jupiter.api.Test;
@@ -64,10 +65,13 @@ class BlogApplicationTests {
     @Test
     void contextLoads() {
 
-        List<BlogWithType> blogWithTypes=blogService.getAllBlog();
+        /*List<BlogWithType> blogWithTypes=blogService.getAllBlog();
         for(BlogWithType blog:blogWithTypes){
             System.out.println(blog);
-        }
+        }*/
+        System.out.println(redisService.hasKey("type"));
+        System.out.println(redisService.hmgetitem(" type").size());
+
 
     }
 
@@ -78,10 +82,6 @@ class BlogApplicationTests {
         temp.setPassword("123456");
         User user=userService.checkUserByName(temp.getUsername());
         System.out.println(user);
-        
-
-
-
     }
     @Test
     public void test(){
@@ -104,6 +104,8 @@ class BlogApplicationTests {
 
     @Test
     public void redisTest(){
+
+
 
         List<Blog> blog=blogService.showAllBlog();
 

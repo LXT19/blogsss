@@ -1,10 +1,7 @@
 package com.blog.service.ServiceImpl;
 
 import com.blog.NotFoundException;
-import com.blog.bean.Blog;
-import com.blog.bean.BlogQuery;
-import com.blog.bean.BlogWithType;
-import com.blog.bean.ShowBlog;
+import com.blog.bean.*;
 import com.blog.mapper.BlogMapper;
 import com.blog.mapper.TagMapper;
 import com.blog.mapper.TypeMapper;
@@ -24,6 +21,7 @@ import org.springframework.stereotype.Service;
 import sun.awt.image.ImageWatched;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class BlogServiceImpl implements BlogService {
@@ -67,9 +65,7 @@ public class BlogServiceImpl implements BlogService {
             blog.setUser(userMapper.getUser(blog.getUserId()));
 
         }
-        else{
 
-        }
         return blog;
 
     }
@@ -152,6 +148,9 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public int updateBlog( ShowBlog blog) {
+
+        redisService.del("blogs");
+
         blog.setUpdateTime(new Date());
 
         blog.setTypeId(blog.getType().getId());
@@ -166,6 +165,7 @@ public class BlogServiceImpl implements BlogService {
      */
     @Override
     public int deleteBlog(Long id) {
+        redisService.del("blogs");
 
         return blogMapper.deleteBlog(id);
 
@@ -191,6 +191,7 @@ public class BlogServiceImpl implements BlogService {
         blog.setType(typeMapper.getTypeById(blog.getTypeId()));
 
        // blog.setTag(tagMapper.getTagById(blog.getTagIds()));
+
         return blog;
     }
 
@@ -202,7 +203,28 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<BlogWithType> blogTop() {
 
-        return blogMapper.blogTop();
+        List<BlogWithType> list=new ArrayList<>();
+        Set<Object> set=redisService.hmgetitem("blog_top");
+        //先从Redis查
+        if(set.size()!=0){
+            for(Object o:set){
+                BlogWithType blog=(BlogWithType) redisService.hget("blog_top",o.toString());
+                list.add(blog);
+            }
+
+        }
+        //查不到再从数据库查
+        if(list.size()==0){
+            list=blogMapper.blogTop();
+            //并将查到的赋值到Redis上
+            for(BlogWithType blogs:list){
+                String str=blogs.getId().toString();
+                //redisService.hset();
+                redisService.hset("blog_top",str,blogs,2, TimeUnit.DAYS);
+            }
+        }
+
+        return list;
 
     }
 
@@ -217,7 +239,7 @@ public class BlogServiceImpl implements BlogService {
         Set<Object> set=redisService.hmgetitem("blogs");
         for(Object o:set){
             Blog blogs = (Blog) redisService.hget("blogs", o.toString());
-            System.out.println(blogs.getTitle());
+
             blog.add(blogs);
         }
         if(blog.size()==0){
@@ -227,6 +249,10 @@ public class BlogServiceImpl implements BlogService {
                 blogs.setType(typeMapper.getTypeById(blogs.getTypeId()));
 
                 blogs.setUser(userMapper.getUser(blogs.getUserId()));
+
+                String str=blogs.getId().toString();
+
+                redisService.hset("blogs",str,blogs,2,TimeUnit.DAYS);
 
             }
         }
@@ -299,7 +325,9 @@ public class BlogServiceImpl implements BlogService {
      */
     @Override
     public int updateBlogView(Long id) {
+
         return blogMapper.updateBlogView(id);
+
     }
 
     /**
@@ -308,6 +336,8 @@ public class BlogServiceImpl implements BlogService {
      */
     @Override
     public int countBlog() {
+
         return blogMapper.contBlog();
+
     }
 }

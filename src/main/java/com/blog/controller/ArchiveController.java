@@ -25,6 +25,7 @@ public class ArchiveController {
         model.addAttribute("blog",blog);
 
         model.addAttribute("countBlog",blogService.countBlog());
+
         return "archives";
 
     }

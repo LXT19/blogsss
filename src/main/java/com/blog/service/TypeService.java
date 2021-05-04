@@ -1,6 +1,7 @@
 package com.blog.service;
 import com.blog.bean.Type;
 import com.github.pagehelper.Page;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.stereotype.Service;
 
@@ -35,10 +36,10 @@ public interface TypeService {
     /**
      * 更新分类
      * @param id
-     * @param type
+     * @param name
      * @return
      */
-    int updateType(Long id,Type type);
+    int updateType( Long id,  String  name);
 
 
     /**

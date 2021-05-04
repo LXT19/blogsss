@@ -40,7 +40,7 @@ public class BlogsController {
     @GetMapping("/blogs")
     public String list_Blog(Model model, @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum) {
 
-        PageHelper.startPage(pageNum, 4);
+        PageHelper.startPage(pageNum, 5);
 
         List<BlogWithType> allBlog = blogService.getAllBlog();
 
@@ -75,8 +75,11 @@ public class BlogsController {
 
     @GetMapping("/blogs/input")
     public String input(Model model){
+
         setTypeAndTag(model);
+
         return "admin/blogs-input";
+
     }
 
     @PostMapping("/saveBlogs")

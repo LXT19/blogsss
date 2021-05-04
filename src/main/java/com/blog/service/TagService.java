@@ -32,7 +32,7 @@ public interface TagService {
      * @param tag
      * @return
      */
-    int updateTag(Long id,Tag tag);
+    int updateTag(Long id,String name);
 
 
     /**

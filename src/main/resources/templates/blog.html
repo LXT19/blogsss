@@ -45,7 +45,7 @@
 
     <!--中间内容-->
     <div id="waypoint" class=" m-margin-top-lager m-container-small animate__animated animate__fadeInLeft">
-        <div class="ui  container">
+        <div class="ui  container" id="p-container">
             <div class="ui top attached segment">
                 <div class="ui grid">
                     <div class="eleven wide column">
@@ -440,14 +440,14 @@ h5,h6{font-size:1em;}
                 </div>
                 <!--标签-->
                 <div class="m-padded-lr m-padded-tb-lager" >
-                    <a class="ui basic left  teal label" th:each="tags:${blog.getTag()}"><span th:text="${tags.name}">标签</span></a>
+                    <a class="ui basic left  blue label" th:each="tags:${blog.getTag()}"><span th:text="${tags.name}">标签</span></a>
                 </div>
                 <!--赞赏-->
                 <div class="ui center aligned segment">
                     <button id="paybutton" class="ui  orange basic button">赞赏</button>
                 </div>
                 <div  class="ui payQR flowing popup transition hidden">
-                    <div class="ui teal basic  label">
+                    <div class="ui blue basic  label">
                         <div class="ui images  ">
                            <div class="image">
                                <img src="../static/images/money.png" th:src="@{/images/money.png}" class="ui rounded bordered image" style="width: 120px">
@@ -477,7 +477,7 @@ h5,h6{font-size:1em;}
                 </div>
 
             </div>
-            <div  class="ui bottom teal attached segment ">
+            <div  class="ui bottom blue attached segment ">
                 <!--留言区域-->
                 <div id="comment-container" class="ui from">
                     <div th:fragment="commentList">
@@ -527,7 +527,7 @@ h5,h6{font-size:1em;}
                                 </div>
                             </div>
                             <div class="field ">
-                                <button  type="submit" class="ui teal  button" ><i class=" edit icon"></i>发布</button>
+                                <button  type="submit" class="ui blue  button" ><i class=" edit icon"></i>发布</button>
                             </div>
                         </div>
                     </div>
@@ -543,7 +543,7 @@ h5,h6{font-size:1em;}
         <div class="ui vertical icon buttons ">
             <button type="button" class="ui toc blue button">目录</button>
             <a href="#comment-container" class="ui blue button">留言</a>
-            <button class="ui wechat teal button"><i class="weixin icon"></i> </button>
+            <button class="ui wechat blue button"><i class="weixin icon"></i> </button>
             <div id="to-top-button" class="ui icon button"><i class="chevron up icon"></i> </div>
         </div>
     </div>
@@ -573,6 +573,8 @@ h5,h6{font-size:1em;}
 <script src="../static/lib/qrcode/qrcode.min.js"></script>
 <script src="../static/lib/waypoints/jquery.waypoints.min.js"></script>-->
 <script th:inline="javascript">
+
+
     $('#paybutton').popup({
         popup : $('.payQR.popup'),
         on: 'click',
@@ -610,8 +612,8 @@ h5,h6{font-size:1em;}
     });
 
     $('#to-top-button').click(function (){
-        $(window).scrollTo(0,500);
-
+        /*$(window).scrollTo(0,500);*/
+        $(window).scrollTop(0,500);
     });
 
     var waypoint = new Waypoint({

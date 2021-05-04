@@ -13,7 +13,7 @@
 <nav th:replace="_fragments :: menu(6)"></nav>
 
 <!--中间内容-->
-<div class="m-container-small m-margin-top-lager">
+<div class="m-container-small m-margin-top-lager" id="p-container">
     <div class="ui  container background-color">
 
         <div class="segment m-margin-top ">
@@ -21,9 +21,9 @@
             <div class="ui segment   " >
                 <h2 class="ui header " th:text="${q_type.f_type}">java基础</h2>
             </div>
-            <div th:each="question:${question_list}">
-                <div class="segment background-color  m-padded-left" >
-                    <br>
+            <div th:each="question:${question_list}" class="">
+                <div class="segment background-color m-padded-left m-padded-tb-big" >
+
                     <h3 class="ui header " th:text="${question.getF_question()}">1、JDK 和 JRE 有什么区别？ </h3>
                     <button class="ui button  blue basic"   th:onclick="'javascript:dispaly_ans(\''+${question.id}+'\');'" >点击查看答案</button>
                     <div th:id="${question.id}"  id="question1" class="segment" style="display: none">
@@ -32,8 +32,7 @@
                         <p>JRE只包含java所运行的工具，如JVM，java的基本类库，java命令，以及一些基本组件。</p>
                         <p>如果只是运行java程序，就只需用到jre,如果需要开发java程序，就需要用到jdk</p>
                     </div>
-
-
+                    <br>
                 </div>
                <!-- <div class="segment background-color  m-padded-left" >
                     <br>
@@ -92,14 +91,32 @@
 </div>
 <br>
 <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <!--底部-->
 <footer th:replace="_fragments :: footer"></footer>
 <!--/*/<th:block th:replace="_fragments :: script">/*/-->
 
 <!--/*/</th:block>/*/-->
+<script src="../static/lib/bg/custom.js" th:src="@{/lib/bg/custom.js}"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
 <script>
 
     function dispaly_ans(oDiv) {

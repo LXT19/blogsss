@@ -23,7 +23,7 @@ public class TagController {
     private TagService tagService;
 
     @GetMapping("/tag")
-    public String Tag(Model model, @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum){
+    public String Tag(Model model, @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,RedirectAttributes attributes){
         //引入分页插件
         //在查询之前调用，传入页码和每页的大小
         PageHelper.startPage(pageNum,3);
@@ -31,6 +31,7 @@ public class TagController {
         List<Tag> allTag=tagService.listTag();
         PageInfo<Tag> pageInfo=new PageInfo<>(allTag);
         model.addAttribute("pageInfo",pageInfo);
+        attributes.addFlashAttribute("tag_message",null);
         return "/admin/tag";
     }
 
@@ -59,11 +60,11 @@ public class TagController {
         int i= tagService.saveTag(tag);
 
         if(i==0){
-            attributes.addFlashAttribute("tag-message","添加失败");
+            attributes.addFlashAttribute("tag_message","添加失败");
 
         }
         else {
-            attributes.addFlashAttribute("tag-message","添加成功");
+            attributes.addFlashAttribute("tag_message","添加成功");
 
         }
         return "redirect:/admin/tag";
@@ -84,16 +85,21 @@ public class TagController {
     /**
      * 更新标签
      * @param id
-     * @param tag
+     * @param name
      * @return
      */
     @PostMapping("/tag/{id}/update")
-    public String updateTag(@PathVariable Long id,Tag tag){
-        int i=tagService.updateTag(id,tag);
-        if(i==0){
+    public String updateTag(@PathVariable Long id,String name,RedirectAttributes attributes){
 
-        }
-        return null;
+        int i=tagService.updateTag(id,name);
+
+        if(i==0)
+            attributes.addFlashAttribute("tag_message","更新失败");
+
+        else
+            attributes.addFlashAttribute("tag_message","更新成功");
+
+        return "redirect:/admin/tag";
     }
 
     /**

@@ -41,8 +41,8 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public int updateTag(Long id, Tag tag) {
-        return tagMapper.updateTag(id,tag);
+    public int updateTag(Long id, String name) {
+        return tagMapper.updateTag(id,name);
     }
 
     @Override

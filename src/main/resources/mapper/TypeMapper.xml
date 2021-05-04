@@ -43,7 +43,7 @@
     </delete>
 
     <!--更新type-->
-    <update id="updateType" parameterType="java.lang.Integer">
+    <update id="updateType" >
         update t_type set name =#{name} where id = #{id}
     </update>
 

@@ -84,7 +84,10 @@ public class UserController {
      */
     @GetMapping("/logout")
     public String logout(HttpSession session){
-        session.removeAttribute("user");
+
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        //session.removeAttribute("user");
         return "redirect:/admin";
     }
 
